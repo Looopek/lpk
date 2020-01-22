@@ -67,4 +67,9 @@ public class Student extends Osoba implements Serializable {
     public int compareTo(Object o) {
         return 0;
     }
+
+    @Override
+    public String toString(){
+        return super.toString() + ", nr indeksu: "+nr_indeksu+", erasmus: "+czy_erasmus+", 1 stopien: "+czy_1stopien+", 2 stopien: "+ czy_2stopien;
+    }
 }

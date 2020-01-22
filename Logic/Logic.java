@@ -8,6 +8,8 @@ import java.util.HashSet;
 
 public class Logic {
 
+    private static final long serialVersionUID = 1;
+
     private ArrayList<Osoba> osoby;
     private HashSet<String> studenci;
     private HashSet<String> pracownicy;
@@ -28,19 +30,23 @@ public class Logic {
     }
 
     public boolean usun_po_imieniu(String imie) {
-        boolean usunieto = false;
+        ArrayList<Osoba> do_usuniecia = new ArrayList<>();
         for (int i=0;i<osoby.size();i++) {
+            if(osoby.get(i) instanceof Student){
+                studenci.remove((((Student) osoby.get(i)).GetNr_indeksu()));
+            }else {
+                pracownicy.remove(osoby.get(i).getPesel());
+            }
             if (osoby.get(i).getImie().equals(imie)) {
-                if(osoby.get(i) instanceof Student){
-                    studenci.remove((((Student) osoby.get(i)).GetNr_indeksu()));
-                }else{
-                    pracownicy.remove(osoby.get(i).getPesel());
-                }
-                osoby.remove(osoby.get(i));
-                usunieto = true;
+                do_usuniecia.add(osoby.get(i));
             }
         }
-        return usunieto;
+
+        for(int i=0; i<do_usuniecia.size(); i++){
+            osoby.remove(do_usuniecia.get(i));
+        }
+        if(do_usuniecia.size()>0)return true;
+        else return false;
     }
 
     public boolean usun_po_pesel(String pesel) {
@@ -88,5 +94,9 @@ public class Logic {
             Object obj = input.readObject();
             osoby.add((Osoba) obj);
         }
+    }
+
+    public ArrayList<Osoba> getOsoby(){
+        return osoby;
     }
 }

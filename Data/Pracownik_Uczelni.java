@@ -37,4 +37,9 @@ public abstract class Pracownik_Uczelni extends Osoba implements Serializable {
     public void setStaz(String staz) {
         this.staz = staz;
     }
+
+    @Override
+    public String toString(){
+        return super.toString() + ", stanowisko: "+ stanowisko + ", staz: "+ staz + ", pensja: "+ pensja;
+    }
 }

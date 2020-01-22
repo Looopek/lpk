@@ -15,6 +15,7 @@ public class GUI extends JPanel implements ActionListener {
     private JButton zapisz;
 
     private JButton dodaj;
+    private JButton pokaz_wszystkich;
     private JButton znajdz;
     private JButton usun_pesel;
     private JButton usun_imie;
@@ -84,9 +85,14 @@ public class GUI extends JPanel implements ActionListener {
         usuwanie.add(usun_pesel);
         usuwanie.add(usun_imie);
 
+        JPanel guziki = new JPanel();
         dodaj = new JButton("Dodaj");
         dodaj.addActionListener(this);
-        dol.add(dodaj);
+        pokaz_wszystkich = new JButton("Pokaz wszystkich");
+        pokaz_wszystkich.addActionListener(this);
+        guziki.add(dodaj);
+        guziki.add(pokaz_wszystkich);
+        dol.add(guziki);
         dol.add(usuwanie);
 
         add(gora);
@@ -119,13 +125,24 @@ public class GUI extends JPanel implements ActionListener {
             }
         } else if (e.getSource() == dodaj) {
             wykonaj_dodaj();
+        }else if (e.getSource() == pokaz_wszystkich) {
+            wykonaj_pokaz_wszystkich();
         } else if (e.getSource() == znajdz) {
             wykonaj_znajdz();
         } else if (e.getSource() == usun_pesel) {
             wykonaj_usun_pesel();
         } else if (e.getSource() == usun_imie) {
             wykonaj_usun_imie();
+        }else{
+            System.out.println(e.getSource());
         }
+    }
+
+    private void wykonaj_pokaz_wszystkich(){
+        String wszyscy = Main.wszystkie_osoby();
+        if(wszyscy.equals(""))wszyscy = "Brak dodanych osob.";
+        else wszyscy = "<html><body width='750'>" + wszyscy.replaceAll("\n", "<br><br>");
+        JOptionPane.showMessageDialog(null, wszyscy);
     }
 
     private void wykonaj_znajdz(){

@@ -43,4 +43,8 @@ public class Pracownik_Badawczo_Dydaktyczny extends Pracownik_Uczelni implements
     public int compareTo(Object o) {
         return 0;
     }
+    @Override
+    public String toString(){
+        return super.toString() + ", punktacja: "+ punktacja;
+    }
 }
