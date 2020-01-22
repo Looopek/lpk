@@ -53,4 +53,8 @@ public class Pracownik_Administracyjny extends Pracownik_Uczelni implements Seri
     public int compareTo(Object o) {
         return 0;
     }
+    @Override
+    public String toString(){
+        return super.toString() + ", nadgodziny: "+liczba_nadgodzin;
+    }
 }

@@ -5,6 +5,7 @@ import Interface.GUI;
 import Logic.Logic;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
     private static Logic logika;
@@ -12,6 +13,15 @@ public class Main {
     public static void main(String[] args) {
         logika = new Logic();
         GUI.showGUI();
+    }
+
+    public static String wszystkie_osoby(){
+        ArrayList<Osoba> osoby = logika.getOsoby();
+        String wszystkie_osoby = "";
+        for(int i=0; i<osoby.size(); i++){
+            wszystkie_osoby+=osoby.get(i).toString()+"\n";
+        }
+        return wszystkie_osoby;
     }
 
     public static String znajdz(String pesel){
